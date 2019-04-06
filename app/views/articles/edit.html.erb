@@ -1,0 +1,12 @@
+ <div class="contents row">
+      <h3>
+        編集
+      </h3>
+    <%= form_with(model: @article, url: article_path, method: :patch) do |f| %>
+      <div class="field">
+      <%= f.label :content %>
+      <%= f.text_field :content, id: :content %><br/>
+      </div>
+      <%= f.submit %>
+    <% end %>
+</div>
