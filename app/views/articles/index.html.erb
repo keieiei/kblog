@@ -16,6 +16,11 @@
               <div class="card-content white-text">
                 <font ><span class="card-title"><a href="/users/<%= post.user.id %>"><%= post.user.name %></a></span></font>
                   <p><%= simple_format(post.content) %></p>
+                  <% if current_user.already_liked?(post) %>
+                    <%= button_to 'いいね削除', "/articles/#{post.id}/likes/id", method: :delete, class:"liked" %>
+                  <% else %>
+                    <%= button_to 'いいね', article_likes_path(post), class:"unlike"  %>
+                  <% end %>
                   <% if user_signed_in? && current_user.id == post.user_id %>
                   <%= link_to '編集', "/articles/#{post.id}/edit", method: :get %>
                   <%= link_to '削除', "/articles/#{post.id}", method: :delete %>
