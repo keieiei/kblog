@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kblog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class = "cyan lighten-5">
+
+<nav class = "lime darken-1">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Kblog</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+        <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to "マイページへ", user_path(current_user.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+      <div class="container">
+        <!-- Page Content goes here -->
+
+    <%= yield %>
+      </div>
+  </body>
+</html>

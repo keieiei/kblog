@@ -1,0 +1,9 @@
+<h4>ユーザー詳細ページ</h4>
+<h5><%= @user.name %></h5>
+<h6>投稿内容</h6>
+<% @user.article.each do |post| %>
+  <a href="post_url %>"><%= post.content %></a>
+  <hr>
+<% end %>
+<%= link_to "ユーザー一覧へ", users_path %>
+<%= link_to "ホームへ戻る", articles_path %>
