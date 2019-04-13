@@ -8,33 +8,27 @@
   <hr>
   <h5>投稿一覧</h5>
   <% @articles.each do |post| %>
-<!--     <a href="/users/<%= post.user.id %>"><%= post.user.name %></a>
-    <p><a href="/articles/<%= post.id %>"><%= post.content %></a></p> -->
         <div class="row">
           <div class="col s12">
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <font ><span class="card-title"><a href="/users/<%= post.user.id %>"><%= post.user.name %></a></span></font>
                   <p><%= simple_format(post.content) %></p>
-                  <% if current_user.already_like?(post) %>
+                  <% if current_user.like?(post) %>
                     <%= button_to 'いいね削除', "/articles/#{post.id}/likes/id", method: :delete, class:"liked" %>
                   <% else %>
                     <%= button_to 'いいね', article_likes_path(post), class:"unlike"  %>
                   <% end %>
-                  <% if user_signed_in? && current_user.id == post.user_id %>
+                  <% if current_user.id == post.user_id %>
                   <%= button_to '編集', "/articles/#{post.id}/edit", method: :get, class:"edit" %>
                   <%= button_to '削除', "/articles/#{post.id}", method: :delete, class:"delete" %>
                   <% end %>
-<!--                   <p><a href="/articles/<%= post.id %>"><%= post.content %></a></p> -->
               </div>
             </div>
           </div>
         </div>
     <% end %>
-
 <% else %>
-
-
   <h5>投稿一覧</h5>
   <% @articles.each do |post| %>
         <div class="row">
