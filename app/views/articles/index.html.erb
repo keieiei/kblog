@@ -22,8 +22,8 @@
                     <%= button_to 'いいね', article_likes_path(post), class:"unlike"  %>
                   <% end %>
                   <% if user_signed_in? && current_user.id == post.user_id %>
-                  <%= link_to '編集', "/articles/#{post.id}/edit", method: :get %>
-                  <%= link_to '削除', "/articles/#{post.id}", method: :delete %>
+                  <%= button_to '編集', "/articles/#{post.id}/edit", method: :get, class:"edit" %>
+                  <%= button_to '削除', "/articles/#{post.id}", method: :delete, class:"delete" %>
                   <% end %>
 <!--                   <p><a href="/articles/<%= post.id %>"><%= post.content %></a></p> -->
               </div>
