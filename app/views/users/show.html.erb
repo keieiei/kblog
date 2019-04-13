@@ -1,5 +1,6 @@
-<h4>ユーザー詳細ページ</h4>
-<h5><%= @user.name %></h5>
+<h2>ユーザー詳細ページ</h2>
+<h3><%= @user.name %></h3>
+
 <h6>投稿内容</h6>
 <% @user.article.each do |post| %>
         <div class="row">
@@ -17,23 +18,22 @@
           </div>
         </div>
 <% end %>
-<h3>いいねしている投稿</h3>
-<% @user.likes.each do |post| %>
-        <div class="row">
-          <div class="col s12">
-            <div class="card blue-grey darken-1">
-              <div class="card-content white-text">
-                <font ><span class="card-title"><a href="/users/<%= post.user.id %>"><%= post.article.user.name %></a></span></font>
-                  <p><%= post.article.content %></p>
-                  <% if user_signed_in? && current_user.id == post.article.user_id %>
-                  <%= link_to '編集', "/articles/#{post.id}/edit", method: :get %>
-                  <%= link_to '削除', "/articles/#{post.id}", method: :delete %>
-                  <% end %>
+  <h3>いいねしている投稿</h3>
+  <% @user.likes.each do |post| %>
+          <div class="row">
+            <div class="col s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <font ><span class="card-title"><a href="/users/<%= post.user.id %>"><%= post.article.user.name %></a></span></font>
+                    <p><%= simple_format(post.article.content) %></p>
+<!--                     <% if user_signed_in? && current_user.id == post.article.user_id %>
+                    <%= link_to '編集', "/articles/#{post.id}/edit", method: :get %>
+                    <%= link_to '削除', "/articles/#{post.id}", method: :delete %>
+                    <% end %> -->
+                </div>
               </div>
             </div>
           </div>
-        </div>
-<% end %>
-
+  <% end %>
 <%= link_to "ユーザー一覧へ", users_path %>
 <%= link_to "ホームへ戻る", articles_path %>
